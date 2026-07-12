@@ -1,0 +1,61 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootc
+    volumes:
+      - mysql_data:/var/lib/mysql
+  rabbitmq:
+    image: my-rabbitmq:1.0
+    container_name: rabbitmqorderhub
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  service-registry:
+    image: orderhub-service-registry:0.1
+    ports:
+      - "8761:8761"
+    env_file:
+      - ./service-registry/.env
+  api-gateway:
+    image: orderhub-api-service:0.1
+    ports:
+      - "8091:8091"
+    env_file:
+      - ./api-gateway/.env
+  user-service:
+    image: orderhub-user-service:0.1
+    ports:
+      - "8081:8081"
+    env_file:
+      - ./user-service/.env
+  product-service:
+    image: orderhub-product-service:0.1
+    ports:
+      - "8082:8082"
+    env_file:
+      - ./product-service/.env
+  order-service:
+    image: orderhub-order-service:0.1
+    ports:
+      - "8083:8083"
+    env_file:
+      - ./order-service/.env
+  payment-service:
+    image: orderhub-payment-service:0.1
+    ports:
+      - "8084:8084"
+    env_file:
+      - ./payment-service/.env
+  email-service:
+    image: orderhub-email-service:0.1
+    ports:
+      - "8085:8085"
+    env_file:
+      - ./email-service/.env
+
+volumes:
+  mysql_data:

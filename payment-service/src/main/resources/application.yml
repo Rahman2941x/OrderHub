@@ -1,0 +1,46 @@
+server:
+  port: 8084
+
+jwt:
+  secret: ${JWT_SECRET}
+
+spring:
+  application:
+    name: payment-service
+
+  rabbitmq:
+    host: ${OH_MQ_HOST}
+    port: ${OH_MQ_PORT}
+    username: ${OH_MQ_USERNAME}
+    password: ${OH_MQ_PASSWORD}
+
+  datasource:
+    url: ${OH_PAYMENT_ID}
+    username: ${OH_PAYMENT_DB_ID}
+    password: ${OH_PAYMENT_DB_PASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://service-registry:8761/eureka/
+
+
+rabbitmq:
+  payment:
+    queue: ${PAYMENT_QUEUE}
+oh:
+  email:
+    payment:
+      queue: ${OH_EMAIL_PAYMENT_QUEUE}
+

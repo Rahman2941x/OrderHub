@@ -1,0 +1,10 @@
+package com.email_service.entity;
+
+public enum OrderStatus {
+    PLACED,
+    CONFIRMED,
+    OUT_FOR_DELIVERY,
+    DELIVERED,
+    CANCELLED,
+
+}

@@ -1,0 +1,60 @@
+server:
+  port: 8082
+
+jwt:
+  secret: ${JWT_SECRET}
+
+spring:
+  application:
+    name: product-service
+
+  rabbitmq:
+    host: ${OH_MQ_HOST}
+    port: ${OH_MQ_PORT}
+    username: ${OH_MQ_USERNAME}
+    password: ${OH_MQ_PASSWORD}
+
+  datasource:
+    url: ${OH_PRODUCT_URL}
+    username: ${OH_PRODUCT_DB_ID}
+    password: ${OH_PRODUCT_DB_PASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://service-registry:8761/eureka/
+
+
+rabbitmq:
+  product-stock:
+    update:
+      queue: ${PRODUCT_STOCK_UPDATE_QUEUE}
+
+  product:
+    request:
+      queue: ${PRODUCT_DETAIL_REQUEST_QUEUE}
+    response:
+      queue: ${PRODUCT_DETAIL_RESPONSE_QUEUE}
+    validate:
+      queue: ${PRODUCT_VALIDATE_QUEUE}
+
+  bulk:
+    product:
+      validate:
+        queue: ${PRODUCT_BULK_VALIDATE_QUEUE}
+
+  send:
+    message: send_message

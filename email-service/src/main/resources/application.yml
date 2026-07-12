@@ -1,0 +1,55 @@
+server:
+  port: 8085
+
+jwt:
+  secret: ${JWT_SECRET}
+
+spring:
+  application:
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: orderhubtcl@gmail.com
+    password: ymbiqvmksshudiwv
+
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    
+    
+    name: email-service
+  rabbitmq:
+    host: ${OH_MQ_HOST}
+    port: ${OH_MQ_PORT}
+    username: ${OH_MQ_USERNAME}
+    password: ${OH_MQ_PASSWORD}
+
+  datasource:
+    url: ${OH_EMAIL_DB_URL}
+    username: ${OH_EMAIL_DB_ID}
+    password: ${OH_EMAIL_DB_PASSWORD}
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://service-registry:8761/eureka/
+
+oh:
+  email:
+    queue: ${OH_EMAIL_QUEUE}
+    payment:
+      queue: oh_email_payment_queue

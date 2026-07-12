@@ -1,0 +1,32 @@
+server:
+  port: 8081
+
+
+jwt:
+  secret: ${JWT_SECRET}
+
+spring:
+  application:
+    name: user-service
+
+  datasource:
+    url: ${ORDER_HUB_DB_URL}
+    username: ${ORDER_HUB_DB}
+    password: ${ORDER_HUB_DB_PASS}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://service-registry:8761/eureka/
+
+
